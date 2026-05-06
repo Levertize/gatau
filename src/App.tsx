@@ -111,7 +111,7 @@ const App: React.FC = () => {
       window.removeEventListener('keydown', handleActivity);
       clearTimeout(timeout);
     };
-  }, [isAudioOpen, isNatureOpen, isSettingsOpen]);
+  }, [isAudioOpen, isNatureOpen, isSettingsOpen, isCanvasOpen]);
 
   const toggleAmbient = (id: string) => {
     const audio = ambientObjects.current[id];
