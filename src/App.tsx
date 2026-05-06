@@ -100,7 +100,7 @@ const App: React.FC = () => {
     const handleActivity = () => {
       setShowUI(true);
       clearTimeout(timeout);
-      if (!isAudioOpen && !isNatureOpen && !isSettingsOpen) {
+      if (!isAudioOpen && !isNatureOpen && !isSettingsOpen && !isCanvasOpen) {
         timeout = window.setTimeout(() => setShowUI(false), 8000);
       }
     };
@@ -173,7 +173,7 @@ const App: React.FC = () => {
           >
             ZENSPACE
           </h1>
-          <div className="w-px h-16 bg-white/10 mt-10" />
+          <div className={`w-px h-16 bg-white/10 mt-10 transition-all duration-1000 ${showUI ? 'opacity-100' : 'opacity-0'}`} />
         </header>
 
         <main className="flex flex-col items-center">
@@ -206,7 +206,7 @@ const App: React.FC = () => {
           )}
         </main>
 
-        <footer className={`flex flex-col items-center gap-8 transition-all duration-1000 ${showUI ? 'opacity-100' : 'opacity-20 hover:opacity-100'}`}>
+        <footer className={`flex flex-col items-center gap-8 transition-all duration-1000 ${showUI ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <div className="relative p-[1px] rounded-full overflow-hidden glow-container shadow-3xl">
             <nav className="boutique-glass px-12 py-7 rounded-full flex gap-16 items-center border border-white/5 relative z-10">
               <button onClick={() => setIsAudioOpen(true)} className={`nav-link ${isAudioOpen || isPlaying ? 'active' : ''}`}>Soundtrack</button>

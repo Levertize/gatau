@@ -13,111 +13,135 @@
 <a name="english"></a>
 ## 🌍 English
 
-**ZENSPACE** is a premium, minimalist web-based atmospheric application designed for deep focus, meditation, or relaxation. Combining lo-fi music, ambient nature sounds, and dynamic visual tuning, ZENSPACE creates a personalized aesthetic environment tailored to your mood.
+### 🌟 Introduction & Philosophy
+In an era of constant digital noise and notification fatigue, **ZENSPACE** was born from a simple need: **The need for a digital sanctuary.** 
 
-### ✨ Key Features
-- **🎵 Modern Soundtrack Hub**: Stream lo-fi radio stations or load any YouTube link directly with a sleek, modern URL input.
-- **🖼️ Interactive Canvas Hub**: Browse curated presets, paste remote image URLs (Unsplash, etc.), or upload your own local background.
-- **🍃 Nature Sound Mixer**: Layer 5 high-quality ambient sounds (Rain, Wind, Night, Waves, Forest) with individual volume controls.
-- **🎨 Visual Tuning Engine**: Real-time control over background **Brightness**, **Contrast**, and **Saturation** to set the perfect vibe.
-- **✨ Particle Engine**: Dynamic visual effects including Dust, Sakura, Rain, Fireflies, and more, reacting to the rhythm of the music.
-- **💤 Intelligent Idle Mode**: A "clean view" mode that keeps the beautiful title and visualizer visible while dimming the UI for maximum immersion.
-- **💎 Boutique Glass UI**: A professional, semi-transparent aesthetic inspired by modern glassmorphism.
+ZENSPACE is not just a lofi player; it is a boutique, highly customizable atmospheric environment designed to help you reclaim your focus. Whether you are a developer deep in a flow state, a student tackling a complex subject, or someone seeking a moment of peace, ZENSPACE stays out of your way while keeping you grounded.
 
-### 🛠️ Tech Stack
-- **Framework**: React 18 (TypeScript)
-- **Styling**: Tailwind CSS 4.0
-- **Icons**: Lucide React
-- **Build Tool**: Vite
-- **Components**: Framer Motion (Transitions), React-YouTube
+---
+
+### ✨ Deep-Dive Features
+
+#### 🎵 The Audio Engine
+Powered by the native **Web Audio API**, ZENSPACE features a professional-grade audio stack:
+- **YouTube Integration**: Stream your favorite curated lofi stations or any custom YouTube link via our "Soundtrack Hub".
+- **Local Audio Support**: Prefer your own library? Upload MP3s directly to your local browser session.
+- **Dynamic Visualizer**: A custom-built frequency analyzer that transforms audio data into rhythmic pulsing bars, providing a subtle visual anchor.
+
+#### 🍃 The Ambient Mixer
+Layer your environment with our 5-track nature mixer. Each track is high-definition and loop-ready:
+- **🌧️ Rain**: Soft, consistent rainfall for cozy vibes.
+- **💨 Wind**: Howling winds for a sense of isolation.
+- **🌙 Night**: Cricket chirps and the stillness of the countryside.
+- **🌊 Waves**: The rhythmic coming and going of the ocean.
+- **🌲 Forest**: The subtle life of a deep woodland.
+*All tracks feature independent volume sliders and a master ambient control.*
+
+#### 🖼️ Canvas & Particle System
+Your visual vibe is just as important as your sound:
+- **Custom Wallpapers**: Choose from boutique presets, paste a remote URL (Unsplash, Pinterest), or upload a local image.
+- **Particle Dynamics**: A procedural particle system offering **Dust, Sakura, Rain, and Fireflies**. These aren't static; they react to the music and mouse movement.
+
+#### 🧘 Zen UI & Idle Mode
+We believe the UI should vanish when not needed:
+- **Boutique Glass UI**: A professional aesthetic inspired by modern glassmorphism.
+- **Total Clean Idle Mode**: After 8 seconds of inactivity, all UI elements (navbars, links, footers) fade to zero opacity. Only the branding and the visualizer remain, turning your screen into a living piece of art.
+
+---
+
+### 🛠️ Technical Architecture
+ZENSPACE is built with a modern, performance-first stack:
+- **React 18**: Utilizing functional components and advanced hooks (`useRef`, `useEffect`) for state and audio management.
+- **TypeScript**: Ensuring type safety across audio nodes and component props.
+- **Tailwind CSS 4.0**: Leveraging the latest CSS-in-JS capabilities for high-performance glassmorphism and animations.
+- **Vite**: For near-instant development starts and optimized production builds.
+
+---
+
+### 📂 Project Structure
+```text
+zenspace/
+├── public/              # Static assets (icons, favicon)
+├── src/
+│   ├── assets/          # Local background images & sound clips
+│   ├── components/      # Modular UI components (AudioPlayer, NatureMixer, etc.)
+│   ├── types/           # Global TypeScript definitions
+│   ├── App.tsx          # Main application orchestration & Idle Mode logic
+│   ├── index.css        # Global styles & custom glassmorphism classes
+│   └── main.tsx         # Entry point
+```
+
+---
 
 ### 🚀 Getting Started
-1. **Clone the repository**:
+**Prerequisites**: Node.js 18+ and npm.
+
+1. **Clone & Enter**:
    ```bash
    git clone https://github.com/Levertize/zenspace.git
    cd zenspace
    ```
-2. **Install dependencies**:
+2. **Install & Run**:
    ```bash
    npm install
-   ```
-3. **Run the development server**:
-   ```bash
    npm run dev
    ```
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
-
-### 🤝 Contributing
-We love contributions! Whether it's fixing a bug, adding a new sound, or improving the UI, here’s how you can help:
-
-1. **Fork** the project.
-2. **Create a Feature Branch** (`git checkout -b feature/AmazingFeature`).
-3. **Commit your changes** (`git commit -m 'Add some AmazingFeature'`).
-4. **Push to the Branch** (`git push origin feature/AmazingFeature`).
-5. **Open a Pull Request**.
-
-Please ensure your code follows the existing style and is well-documented.
 
 ---
 
 <a name="bahasa-indonesia"></a>
 ## 🇮🇩 Bahasa Indonesia
 
-**ZENSPACE** adalah aplikasi atmosfer berbasis web yang minimalis dan premium, dirancang untuk fokus mendalam, meditasi, atau relaksasi. Menggabungkan musik lo-fi, suara alam ambien, dan penyetelan visual dinamis, ZENSPACE menciptakan lingkungan estetika yang dipersonalisasi sesuai dengan suasana hati Anda.
+### 🌟 Pendahuluan & Filosofi
+Di era kebisingan digital yang konstan dan kelelahan notifikasi, **ZENSPACE** lahir dari kebutuhan sederhana: **Kebutuhan akan tempat suci digital.**
 
-### ✨ Fitur Utama
-- **🎵 Soundtrack Hub Modern**: Putar stasiun radio lo-fi pilihan atau masukkan link YouTube apa pun secara langsung dengan input URL yang modern dan bersih.
-- **🖼️ Interactive Canvas Hub**: Jelajahi preset kurasi, tempel URL gambar (Unsplash, dll.), atau unggah latar belakang lokal Anda sendiri.
-- **🍃 Nature Sound Mixer**: Gabungkan 5 suara ambien berkualitas tinggi (Rain, Wind, Night, Waves, Forest) dengan kontrol volume individu.
-- **🎨 Visual Tuning Engine**: Kontrol real-time atas **Brightness** (Kecerahan), **Contrast** (Kontras), dan **Saturation** (Saturasi) latar belakang.
-- **✨ Particle Engine**: Efek visual dinamis termasuk Debu, Kelopak Sakura, Hujan, Kunang-kunang, dan lainnya yang bereaksi terhadap ritme musik.
-- **💤 Idle Mode Cerdas**: Mode "tampilan bersih" yang menjaga judul dan visualizer tetap terlihat sambil meredupkan UI untuk imersi maksimal.
-- **💎 Boutique Glass UI**: Estetika semi-transparan profesional yang terinspirasi oleh tren *glassmorphism* modern.
-
-### 🛠️ Teknologi yang Digunakan
-- **Framework**: React 18 (TypeScript)
-- **Styling**: Tailwind CSS 4.0
-- **Icons**: Lucide React
-- **Build Tool**: Vite
-- **Komponen**: Framer Motion, React-YouTube
-
-### 🚀 Cara Instalasi
-1. **Clone repository**:
-   ```bash
-   git clone https://github.com/Levertize/zenspace.git
-   cd zenspace
-   ```
-2. **Install dependensi**:
-   ```bash
-   npm install
-   ```
-3. **Jalankan server pengembangan**:
-   ```bash
-   npm run dev
-   ```
-4. **Build untuk produksi**:
-   ```bash
-   npm run build
-   ```
-
-### 🤝 Kontribusi
-Kami sangat terbuka untuk kontribusi! Jika Anda ingin memperbaiki bug, menambah suara baru, atau mempercantik UI, ikuti langkah berikut:
-
-1. **Fork** proyek ini.
-2. **Buat Branch Fitur** (`git checkout -b feature/FiturKeren`).
-3. **Commit perubahan Anda** (`git commit -m 'Menambahkan FiturKeren'`).
-4. **Push ke Branch** (`git push origin feature/FiturKeren`).
-5. **Buka Pull Request**.
-
-Pastikan kode Anda mengikuti gaya penulisan yang ada dan terdokumentasi dengan baik.
+ZENSPACE bukan sekadar pemutar lofi; ini adalah lingkungan atmosferik butik yang sangat dapat dikustomisasi, dirancang untuk membantu Anda memulihkan fokus. Baik Anda seorang pengembang dalam *flow state*, pelajar yang sedang berjuang, atau seseorang yang mencari kedamaian, ZENSPACE tidak akan mengganggu fokus Anda sambil menjaga Anda tetap tenang.
 
 ---
 
-### 📜 License
-Distributed under the MIT License. See `LICENSE` for more information.
+### ✨ Fitur Utama
 
-### 🤝 Contact
-Made with ❤️ by [iqbal/levertize](https://github.com/Levertize)
+#### 🎵 Audio Engine
+Ditenagai oleh **Web Audio API**, ZENSPACE menghadirkan tumpukan audio kelas profesional:
+- **Integrasi YouTube**: Putar stasiun radio lofi pilihan atau link YouTube apa pun.
+- **Dukungan Audio Lokal**: Unggah file MP3 langsung ke sesi browser lokal Anda.
+- **Visualizer Dinamis**: Analyzer frekuensi kustom yang mengubah data audio menjadi denyut visual yang ritmis.
+
+#### 🍃 Ambient Mixer
+Bangun atmosfer Anda dengan 5 track suara alam berkualitas tinggi:
+- **Hujan, Angin, Malam, Ombak, dan Hutan**.
+*Setiap track memiliki slider volume independen dan kontrol volume master.*
+
+#### 🖼️ Canvas & Sistem Partikel
+Estetika visual Anda sama pentingnya dengan suara:
+- **Wallpaper Kustom**: Pilih dari preset butik, tempel URL gambar, atau unggah gambar lokal.
+- **Dinamika Partikel**: Sistem partikel prosedural seperti **Debu, Sakura, Hujan, dan Kunang-kunang** yang bereaksi terhadap musik.
+
+#### 🧘 Zen UI & Idle Mode
+Kami percaya antarmuka harus menghilang saat tidak diperlukan:
+- **Boutique Glass UI**: Estetika profesional yang terinspirasi oleh tren *glassmorphism* modern.
+- **Total Clean Idle Mode**: Setelah 8 detik tanpa aktivitas, semua elemen UI menghilang total. Hanya judul dan visualizer yang tersisa, mengubah layar Anda menjadi karya seni yang hidup.
+
+---
+
+### 🛠️ Arsitektur Teknis
+- **React 18 + TypeScript**: Untuk manajemen state dan keamanan tipe data.
+- **Tailwind CSS 4.0**: Untuk estetika kaca dan animasi berperforma tinggi.
+- **Vite**: Untuk pengembangan yang instan dan build yang teroptimasi.
+
+---
+
+### 🤝 Kontribusi
+Kami sangat terbuka untuk kontribusi!
+1. **Fork** proyek ini.
+2. **Buat Branch Fitur** (`git checkout -b feature/FiturKeren`).
+3. **Commit perubahan** (`git commit -m 'Menambahkan FiturKeren'`).
+4. **Buka Pull Request**.
+
+---
+
+### 📜 Lisensi
+Didistribusikan di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.
+
+### ☕ Dukungan
+Dibuat dengan ❤️ oleh [iqbal/levertize](https://github.com/Levertize)
