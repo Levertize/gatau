@@ -1,74 +1,100 @@
-# React + TypeScript + Vite
+# 🌌 ZENSPACE — Your Ultimate Atmospheric Sanctuary
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
+[**English**](#english) | [**Bahasa Indonesia**](#bahasa-indonesia)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<a name="english"></a>
+## 🌍 English
 
-## React Compiler
+**ZENSPACE** is a premium, minimalist web-based atmospheric application designed for deep focus, meditation, or relaxation. Combining lo-fi music, ambient nature sounds, and dynamic visual tuning, ZENSPACE creates a personalized aesthetic environment tailored to your mood.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### ✨ Key Features
+- **🎵 Modern Soundtrack Hub**: Stream lo-fi radio stations or load any YouTube link directly with a sleek, modern URL input.
+- **🖼️ Interactive Canvas Hub**: Browse curated presets, paste remote image URLs (Unsplash, etc.), or upload your own local background.
+- **🍃 Nature Sound Mixer**: Layer 5 high-quality ambient sounds (Rain, Wind, Night, Waves, Forest) with individual volume controls.
+- **🎨 Visual Tuning Engine**: Real-time control over background **Brightness**, **Contrast**, and **Saturation** to set the perfect vibe.
+- **✨ Particle Particle Engine**: Dynamic visual effects including Dust, Sakura, Rain, Fireflies, and more, reacting to the rhythm of the music.
+- **💤 Intelligent Idle Mode**: A "clean view" mode that keeps the beautiful title and visualizer visible while dimming the UI for maximum immersion.
+- **💎 Boutique Glass UI**: A professional, semi-transparent aesthetic inspired by modern glassmorphism.
 
-## Expanding the ESLint configuration
+### 🛠️ Tech Stack
+- **Framework**: React 18
+- **Styling**: Tailwind CSS (Modern Glassmorphism)
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Components**: Framer Motion (Transitions), React-YouTube
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🚀 Getting Started
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Levertize/zenspace.git
+   cd zenspace
+   ```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+<a name="bahasa-indonesia"></a>
+## 🇮🇩 Bahasa Indonesia
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**ZENSPACE** adalah aplikasi atmosfer berbasis web yang minimalis dan premium, dirancang untuk fokus mendalam, meditasi, atau relaksasi. Menggabungkan musik lo-fi, suara alam ambien, dan penyetelan visual dinamis, ZENSPACE menciptakan lingkungan estetika yang dipersonalisasi sesuai dengan suasana hati Anda.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### ✨ Fitur Utama
+- **🎵 Soundtrack Hub Modern**: Putar stasiun radio lo-fi pilihan atau masukkan link YouTube apa pun secara langsung dengan input URL yang modern dan bersih.
+- **🖼️ Interactive Canvas Hub**: Jelajahi preset kurasi, tempel URL gambar (Unsplash, dll.), atau unggah latar belakang lokal Anda sendiri.
+- **🍃 Nature Sound Mixer**: Gabungkan 5 suara ambien berkualitas tinggi (Rain, Wind, Night, Waves, Forest) dengan kontrol volume individu.
+- **🎨 Visual Tuning Engine**: Kontrol real-time atas **Brightness** (Kecerahan), **Contrast** (Kontras), dan **Saturation** (Saturasi) latar belakang.
+- **✨ Particle Engine**: Efek visual dinamis termasuk Debu, Kelopak Sakura, Hujan, Kunang-kunang, dan lainnya yang bereaksi terhadap ritme musik.
+- **💤 Idle Mode Cerdas**: Mode "tampilan bersih" yang menjaga judul dan visualizer tetap terlihat sambil meredupkan UI untuk imersi maksimal.
+- **💎 Boutique Glass UI**: Estetika semi-transparan profesional yang terinspirasi oleh tren *glassmorphism* modern.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🛠️ Teknologi yang Digunakan
+- **Framework**: React 18
+- **Styling**: Tailwind CSS (Modern Glassmorphism)
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Components**: Framer Motion, React-YouTube
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🚀 Cara Instalasi
+1. **Clone repository**:
+   ```bash
+   git clone https://github.com/Levertize/zenspace.git
+   cd zenspace
+   ```
+2. **Install dependensi**:
+   ```bash
+   npm install
+   ```
+3. **Jalankan server pengembangan**:
+   ```bash
+   npm run dev
+   ```
+4. **Build untuk produksi**:
+   ```bash
+   npm run build
+   ```
+
+---
+
+### 📜 License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+### 🤝 Contact
+Made with ❤️ by [iqbal/levertize](https://github.com/Levertize)
