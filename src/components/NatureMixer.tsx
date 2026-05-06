@@ -25,8 +25,8 @@ const NatureMixer: React.FC<NatureMixerProps> = ({
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/40 backdrop-blur-3xl">
-      <div className="boutique-glass w-full max-w-sm p-12 rounded-[3rem] relative border border-white/5 max-h-[90vh] overflow-y-auto custom-scrollbar">
-        <button onClick={onClose} className="absolute top-8 right-8 opacity-20 hover:opacity-100 transition-opacity">
+      <div className="boutique-glass w-full max-w-sm p-8 md:p-12 rounded-[3rem] relative border border-white/5 max-h-[90vh] overflow-y-auto custom-scrollbar">
+        <button onClick={onClose} className="absolute top-6 right-6 md:top-8 md:right-8 opacity-20 hover:opacity-100 transition-opacity">
           <X size={20} />
         </button>
 

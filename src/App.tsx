@@ -165,11 +165,11 @@ const App: React.FC = () => {
         />
       )}
 
-      <div className="relative z-50 h-full flex flex-col justify-between p-16 transition-all duration-1000 ease-out">
+      <div className="relative z-50 h-full flex flex-col justify-between p-6 md:p-16 transition-all duration-1000 ease-out">
         <header className="flex flex-col items-center">
           <h1 
             data-text="ZENSPACE"
-            className="text-8xl font-sans font-light tracking-[0.6em] text-outline-animate"
+            className="text-5xl sm:text-6xl md:text-8xl font-sans font-light tracking-[0.6em] text-outline-animate"
           >
             ZENSPACE
           </h1>
@@ -211,7 +211,7 @@ const App: React.FC = () => {
             className="relative p-[1px] rounded-full overflow-hidden glow-container shadow-3xl z-20"
             style={{ backgroundColor: 'black' }}
           >
-            <nav className="boutique-glass px-12 py-7 rounded-full flex gap-16 items-center border border-white/5 relative z-10">
+            <nav className="boutique-glass px-6 py-4 md:px-12 md:py-7 rounded-full flex gap-4 md:gap-16 items-center border border-white/5 relative z-10">
               <button onClick={() => setIsAudioOpen(true)} className={`nav-link ${isAudioOpen || isPlaying ? 'active' : ''}`}>Soundtrack</button>
               <button onClick={() => setIsCanvasOpen(true)} className={`nav-link ${isCanvasOpen ? 'active' : ''}`}>Canvas</button>
               <button onClick={() => setIsNatureOpen(true)} className={`nav-link ${isNatureOpen || Object.values(activeSounds).some(v => v) ? 'active' : ''}`}>Ambience</button>
@@ -246,8 +246,8 @@ const App: React.FC = () => {
       {/* Canvas Hub Modal */}
       {isCanvasOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/40 backdrop-blur-3xl">
-          <div className="boutique-glass w-full max-w-sm p-12 rounded-[3rem] relative border border-white/5 max-h-[90vh] overflow-y-auto custom-scrollbar">
-            <button onClick={() => setIsCanvasOpen(false)} className="absolute top-8 right-8 opacity-20 hover:opacity-100 transition-opacity">
+          <div className="boutique-glass w-full max-w-sm p-8 md:p-12 rounded-[3rem] relative border border-white/5 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <button onClick={() => setIsCanvasOpen(false)} className="absolute top-6 right-6 md:top-8 md:right-8 opacity-20 hover:opacity-100 transition-opacity">
               <X size={20} />
             </button>
 
