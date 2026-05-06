@@ -4,6 +4,7 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [**English**](#english) | [**Bahasa Indonesia**](#bahasa-indonesia)
 
@@ -19,13 +20,13 @@
 - **🖼️ Interactive Canvas Hub**: Browse curated presets, paste remote image URLs (Unsplash, etc.), or upload your own local background.
 - **🍃 Nature Sound Mixer**: Layer 5 high-quality ambient sounds (Rain, Wind, Night, Waves, Forest) with individual volume controls.
 - **🎨 Visual Tuning Engine**: Real-time control over background **Brightness**, **Contrast**, and **Saturation** to set the perfect vibe.
-- **✨ Particle Particle Engine**: Dynamic visual effects including Dust, Sakura, Rain, Fireflies, and more, reacting to the rhythm of the music.
+- **✨ Particle Engine**: Dynamic visual effects including Dust, Sakura, Rain, Fireflies, and more, reacting to the rhythm of the music.
 - **💤 Intelligent Idle Mode**: A "clean view" mode that keeps the beautiful title and visualizer visible while dimming the UI for maximum immersion.
 - **💎 Boutique Glass UI**: A professional, semi-transparent aesthetic inspired by modern glassmorphism.
 
 ### 🛠️ Tech Stack
-- **Framework**: React 18
-- **Styling**: Tailwind CSS (Modern Glassmorphism)
+- **Framework**: React 18 (TypeScript)
+- **Styling**: Tailwind CSS 4.0
 - **Icons**: Lucide React
 - **Build Tool**: Vite
 - **Components**: Framer Motion (Transitions), React-YouTube
@@ -49,6 +50,17 @@
    npm run build
    ```
 
+### 🤝 Contributing
+We love contributions! Whether it's fixing a bug, adding a new sound, or improving the UI, here’s how you can help:
+
+1. **Fork** the project.
+2. **Create a Feature Branch** (`git checkout -b feature/AmazingFeature`).
+3. **Commit your changes** (`git commit -m 'Add some AmazingFeature'`).
+4. **Push to the Branch** (`git push origin feature/AmazingFeature`).
+5. **Open a Pull Request**.
+
+Please ensure your code follows the existing style and is well-documented.
+
 ---
 
 <a name="bahasa-indonesia"></a>
@@ -66,11 +78,11 @@
 - **💎 Boutique Glass UI**: Estetika semi-transparan profesional yang terinspirasi oleh tren *glassmorphism* modern.
 
 ### 🛠️ Teknologi yang Digunakan
-- **Framework**: React 18
-- **Styling**: Tailwind CSS (Modern Glassmorphism)
+- **Framework**: React 18 (TypeScript)
+- **Styling**: Tailwind CSS 4.0
 - **Icons**: Lucide React
 - **Build Tool**: Vite
-- **Components**: Framer Motion, React-YouTube
+- **Komponen**: Framer Motion, React-YouTube
 
 ### 🚀 Cara Instalasi
 1. **Clone repository**:
@@ -90,6 +102,17 @@
    ```bash
    npm run build
    ```
+
+### 🤝 Kontribusi
+Kami sangat terbuka untuk kontribusi! Jika Anda ingin memperbaiki bug, menambah suara baru, atau mempercantik UI, ikuti langkah berikut:
+
+1. **Fork** proyek ini.
+2. **Buat Branch Fitur** (`git checkout -b feature/FiturKeren`).
+3. **Commit perubahan Anda** (`git commit -m 'Menambahkan FiturKeren'`).
+4. **Push ke Branch** (`git push origin feature/FiturKeren`).
+5. **Buka Pull Request**.
+
+Pastikan kode Anda mengikuti gaya penulisan yang ada dan terdokumentasi dengan baik.
 
 ---
 
