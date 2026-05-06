@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Image as ImageIcon, Link, Upload, X, Globe, Music, Volume2, Settings as SettingsIcon } from 'lucide-react';
+import { Image as ImageIcon, Link, Upload, X, Globe } from 'lucide-react';
 import AmbientPulse from './components/AmbientPulse';
 import AudioPlayer from './components/AudioPlayer';
 import NatureMixer from './components/NatureMixer';

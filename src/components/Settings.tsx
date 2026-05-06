@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Sun, Sparkles, Zap, Layers, Volume2, Music, Contrast, Palette, Sliders } from 'lucide-react';
+import { X, Sun, Sparkles, Zap, Volume2, Music, Contrast, Palette, Sliders } from 'lucide-react';
 import type { ParticleMode } from '../types';
 
 interface SettingsProps {
