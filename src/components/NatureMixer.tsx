@@ -51,7 +51,7 @@ const NatureMixer: React.FC<NatureMixerProps> = ({
                       onClick={() => toggleSound(sound.id)}
                       className="flex items-center gap-4"
                     >
-                      <div className={`p-2.5 rounded-xl transition-all duration-500 ${isActive ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]' : 'bg-white/5 text-white/40 group-hover:text-white/60'}`}>
+                      <div className={`p-2.5 rounded-xl transition-all duration-500 ${isActive ? 'bg-white/10 text-white boutique-glow-active' : 'bg-white/5 text-white/40 group-hover:text-white/60'}`}>
                         <Icon size={16} strokeWidth={1.5} />
                       </div>
                       <span className={`text-[10px] uppercase tracking-widest font-bold transition-opacity ${isActive ? 'opacity-100' : 'opacity-30 group-hover:opacity-60'}`}>

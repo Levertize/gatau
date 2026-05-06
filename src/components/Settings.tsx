@@ -120,7 +120,7 @@ const Settings: React.FC<SettingsProps> = ({
                 <button 
                   key={m.id}
                   onClick={() => onUpdate('particleMode', m.id)}
-                  className={`py-3 rounded-xl text-[8px] uppercase tracking-widest border transition-all ${visuals.particleMode === m.id ? 'bg-white text-black border-white shadow-xl' : 'bg-white/5 border-white/5 opacity-40 hover:opacity-100'}`}
+                  className={`py-3 rounded-xl text-[8px] uppercase tracking-widest border transition-all ${visuals.particleMode === m.id ? 'bg-white text-black border-white boutique-glow-active' : 'bg-white/5 border-white/5 opacity-40 hover:opacity-100'}`}
                 >
                   {m.label}
                 </button>

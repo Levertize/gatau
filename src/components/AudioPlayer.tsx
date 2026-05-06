@@ -196,7 +196,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     <button 
                       key={preset.id}
                       onClick={() => handlePresetSelect(preset.videoId)}
-                      className={`py-3 px-4 rounded-xl text-[9px] uppercase tracking-widest border transition-all text-center ${videoId === preset.videoId ? 'bg-white text-black border-white shadow-xl' : 'bg-white/5 border-white/5 opacity-40 hover:opacity-100'}`}
+                      className={`py-3 px-4 rounded-xl text-[9px] uppercase tracking-widest border transition-all text-center ${videoId === preset.videoId ? 'bg-white text-black border-white boutique-glow-active' : 'bg-white/5 border-white/5 opacity-40 hover:opacity-100'}`}
                     >
                       {preset.label}
                     </button>
