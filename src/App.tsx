@@ -22,10 +22,11 @@ const DEFAULT_BACKGROUNDS = [
   { id: 'lofi-beach', label: 'Beach Lofi', url: bgBeach },
 ];
 
-// Using stable gstatic URLs for ambient sounds
+// Using stable URLs for ambient sounds
 const AMBIENCE_SOURCES = [
   { id: 'rain', url: 'https://www.gstatic.com/voice_delight/sounds/long/rain.mp3' },
-  { id: 'wind', url: 'https://www.gstatic.com/voice_delight/sounds/long/country_night.mp3' },
+  { id: 'wind', url: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/a/a0/Howling_wind.ogg/Howling_wind.ogg.mp3' },
+  { id: 'night', url: 'https://www.gstatic.com/voice_delight/sounds/long/country_night.mp3' },
   { id: 'waves', url: 'https://www.gstatic.com/voice_delight/sounds/long/ocean.mp3' },
   { id: 'forest', url: 'https://www.gstatic.com/voice_delight/sounds/long/forest.mp3' },
 ];
@@ -43,10 +44,10 @@ const App: React.FC = () => {
   // Persistence Refs
   const ambientObjects = useRef<Record<string, HTMLAudioElement>>({});
   const [activeSounds, setActiveSounds] = useState<Record<string, boolean>>({
-    rain: false, wind: false, waves: false, forest: false
+    rain: false, wind: false, night: false, waves: false, forest: false
   });
   const [ambientVolumes, setAmbientVolumes] = useState<Record<string, number>>({
-    rain: 0.5, wind: 0.5, waves: 0.5, forest: 0.5
+    rain: 0.5, wind: 0.5, night: 0.5, waves: 0.5, forest: 0.5
   });
   const [musicVolume, setMusicVolume] = useState(0.5);
   const [masterAmbientVolume, setMasterAmbientVolume] = useState(0.5);
@@ -58,13 +59,15 @@ const App: React.FC = () => {
 
   const [visuals, setVisuals] = useState({
     brightness: 0.3,
+    contrast: 1.1,
+    saturation: 1.1,
     showParticles: true,
     particleMode: 'dust' as ParticleMode,
     particleSpeed: 1,
     particleCount: 1
   });
 
-  // Initialize once - REMOVED crossOrigin to prevent CORS errors on simple media
+  // Initialize once
   useEffect(() => {
     AMBIENCE_SOURCES.forEach(s => {
       if (!ambientObjects.current[s.id]) {
@@ -72,6 +75,12 @@ const App: React.FC = () => {
         a.src = s.url;
         a.loop = true;
         a.volume = ambientVolumes[s.id] * masterAmbientVolume;
+        
+        // Add error handling for each audio element
+        a.onerror = () => {
+          console.warn(`Ambience sound ${s.id} failed to load from ${s.url}.`);
+        };
+
         ambientObjects.current[s.id] = a;
       }
     });
@@ -139,7 +148,7 @@ const App: React.FC = () => {
           backgroundImage: `url(${wallpaper})`,
           opacity: visuals.brightness,
           transform: `scale(${1.05 + (getScale() - 1) * 0.05})`, // Reduced scale effect to prevent jarring movement
-          filter: 'contrast(1.1) saturate(1.1)' // Slight boost to make anime art pop
+          filter: `contrast(${visuals.contrast}) saturate(${visuals.saturation})` 
         }}
       />
       {/* Darker overlays for better UI visibility */}
@@ -156,7 +165,7 @@ const App: React.FC = () => {
         />
       )}
 
-      <div className={`relative z-50 h-full flex flex-col justify-between p-16 transition-all duration-1000 ease-out ${showUI ? 'opacity-100' : 'opacity-0 translate-y-2 pointer-events-none'}`}>
+      <div className="relative z-50 h-full flex flex-col justify-between p-16 transition-all duration-1000 ease-out">
         <header className="flex flex-col items-center">
           <h1 
             data-text="ZENSPACE"
@@ -170,14 +179,14 @@ const App: React.FC = () => {
         <main className="flex flex-col items-center">
           {isPlaying && (
             <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-1000">
-               <div className="flex items-end gap-1.5 h-10">
-                 {[...Array(12)].map((_, i) => {
-                   const durations = ['0.6s', '0.8s', '0.5s', '0.9s', '0.7s', '1.1s'];
-                   const delays = ['0s', '0.2s', '0.4s', '0.1s', '0.3s', '0.5s'];
+               <div className="flex items-end gap-2 h-12">
+                 {[...Array(16)].map((_, i) => {
+                   const durations = ['0.6s', '0.8s', '0.5s', '0.9s', '0.7s', '1.1s', '0.4s', '1.0s'];
+                   const delays = ['0s', '0.2s', '0.4s', '0.1s', '0.3s', '0.5s', '0.2s', '0.1s'];
                    return (
                      <div 
                       key={i} 
-                      className={`w-1.5 rounded-full bg-gradient-to-t from-white/5 via-white/50 to-white/10 ${isPlaying ? 'visualizer-bar' : ''}`}
+                      className={`w-1 rounded-full bg-gradient-to-t from-white/10 via-white/40 to-white/80 shadow-[0_0_15px_rgba(255,255,255,0.2)] ${isPlaying ? 'visualizer-bar' : ''}`}
                       style={{ 
                         height: isPlaying ? undefined : '15%',
                         '--duration': durations[i % durations.length],
@@ -187,14 +196,17 @@ const App: React.FC = () => {
                    );
                  })}
                </div>
-               <span className="text-[9px] tracking-[0.8em] uppercase font-light text-shimmer">
-                 Atmosphere Active
-               </span>
+               <div className="relative py-2 px-6">
+                 <div className="absolute inset-0 border border-white/10 rounded-full blur-[2px]" />
+                 <span className="relative text-[9px] tracking-[0.8em] uppercase font-bold text-white/40 text-shimmer">
+                   Atmosphere Active
+                 </span>
+               </div>
             </div>
           )}
         </main>
 
-        <footer className="flex flex-col items-center gap-8">
+        <footer className={`flex flex-col items-center gap-8 transition-all duration-1000 ${showUI ? 'opacity-100' : 'opacity-20 hover:opacity-100'}`}>
           <div className="relative p-[1px] rounded-full overflow-hidden glow-container shadow-3xl">
             <nav className="boutique-glass px-12 py-7 rounded-full flex gap-16 items-center border border-white/5 relative z-10">
               <button onClick={() => setIsAudioOpen(true)} className={`nav-link ${isAudioOpen || isPlaying ? 'active' : ''}`}>Soundtrack</button>
