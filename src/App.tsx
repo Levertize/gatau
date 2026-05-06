@@ -206,8 +206,8 @@ const App: React.FC = () => {
           )}
         </main>
 
-        <footer className={`flex flex-col items-center gap-8 transition-all duration-1000 ${showUI ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-          <div className="relative p-[1px] rounded-full overflow-hidden glow-container shadow-3xl">
+        <footer className={`flex flex-col items-center gap-8 transition-all duration-1000 ${showUI ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          <div className="relative p-[1px] rounded-full overflow-hidden glow-container shadow-3xl z-20">
             <nav className="boutique-glass px-12 py-7 rounded-full flex gap-16 items-center border border-white/5 relative z-10">
               <button onClick={() => setIsAudioOpen(true)} className={`nav-link ${isAudioOpen || isPlaying ? 'active' : ''}`}>Soundtrack</button>
               <button onClick={() => setIsCanvasOpen(true)} className={`nav-link ${isCanvasOpen ? 'active' : ''}`}>Canvas</button>
