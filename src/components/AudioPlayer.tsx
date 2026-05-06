@@ -14,34 +14,62 @@ interface AudioPlayerProps {
   setVideoId: (id: string | null) => void;
   localAudio: string | null;
   setLocalAudio: (url: string | null) => void;
+  volume: number;
 }
 
 const LOFI_PRESETS = [
   { id: 'lofigirl', label: 'Lofi Girl - Study/Relax', videoId: 'jfKfPfyJRdk' },
-  { id: 'chillhop', label: 'Chillhop Radio', videoId: '5qap5aO4i9A' },
-  { id: 'synthwave', label: 'Synthwave Radio', videoId: '4xDzrXgIGCE' },
-  { id: 'coffee', label: 'Coffee Shop Beats', videoId: 'e3L1PIY1ZN8' }
+  { id: 'chillhop', label: 'Chillhop Radio - Jazzy', videoId: '5yx6GygbGhs' },
+  { id: 'synthwave', label: 'Synthwave Radio - Chill', videoId: '4xDzrXgIGCE' },
+  { id: 'peaceful', label: 'Peaceful Piano Radio', videoId: 'nmXMgqjQzls' }
 ];
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ 
   isOpen, onClose, onFrequencyData, isPlaying, setIsPlaying, 
-  activeSource, setActiveSource, videoId, setVideoId, localAudio, setLocalAudio 
+  activeSource, setActiveSource, videoId, setVideoId, localAudio, setLocalAudio,
+  volume
 }) => {
   const [ytUrl, setYtUrl] = useState('');
   const [error, setError] = useState<string | null>(null);
   const ytPlayerRef = useRef<any>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Sync volume for YouTube
+  useEffect(() => {
+    if (ytPlayerRef.current && activeSource === 'yt') {
+      ytPlayerRef.current.setVolume(volume * 100);
+    }
+  }, [volume, activeSource]);
+
+  // Sync volume for Local Audio
+  useEffect(() => {
+    if (audioRef.current && activeSource === 'local') {
+      audioRef.current.volume = volume;
+    }
+  }, [volume, activeSource]);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
+  const filterRef = useRef<BiquadFilterNode | null>(null);
   const animationRef = useRef<number>(0);
 
   useEffect(() => {
     if (localAudio && audioRef.current && !audioContextRef.current) {
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
       analyserRef.current = audioContextRef.current.createAnalyser();
+      filterRef.current = audioContextRef.current.createBiquadFilter();
+      
+      // Lofi Low-Pass Filter settings
+      filterRef.current.type = 'lowpass';
+      filterRef.current.frequency.setValueAtTime(2500, audioContextRef.current.currentTime);
+      filterRef.current.Q.setValueAtTime(1, audioContextRef.current.currentTime);
+
       const source = audioContextRef.current.createMediaElementSource(audioRef.current);
-      source.connect(analyserRef.current);
+      
+      // Chain: Source -> Filter -> Analyser -> Destination
+      source.connect(filterRef.current);
+      filterRef.current.connect(analyserRef.current);
       analyserRef.current.connect(audioContextRef.current.destination);
+      
       analyserRef.current.fftSize = 64;
     }
 

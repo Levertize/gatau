@@ -30,6 +30,8 @@ const App: React.FC = () => {
   const [ambientVolumes, setAmbientVolumes] = useState<Record<string, number>>({
     rain: 0.5, wind: 0.5, waves: 0.5, forest: 0.5
   });
+  const [musicVolume, setMusicVolume] = useState(0.5);
+  const [masterAmbientVolume, setMasterAmbientVolume] = useState(0.5);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeSource, setActiveSource] = useState<'yt' | 'local' | null>(null);
@@ -51,11 +53,20 @@ const App: React.FC = () => {
         const a = new Audio();
         a.src = s.url;
         a.loop = true;
-        a.volume = ambientVolumes[s.id];
+        a.volume = ambientVolumes[s.id] * masterAmbientVolume;
         ambientObjects.current[s.id] = a;
       }
     });
   }, []);
+
+  // Update ambient volumes when master changes
+  useEffect(() => {
+    AMBIENCE_SOURCES.forEach(s => {
+      if (ambientObjects.current[s.id]) {
+        ambientObjects.current[s.id].volume = ambientVolumes[s.id] * masterAmbientVolume;
+      }
+    });
+  }, [masterAmbientVolume, ambientVolumes]);
 
   useEffect(() => {
     let timeout: number;
@@ -94,9 +105,6 @@ const App: React.FC = () => {
 
   const handleAmbientVolume = (id: string, val: number) => {
     setAmbientVolumes(prev => ({ ...prev, [id]: val }));
-    if (ambientObjects.current[id]) {
-      ambientObjects.current[id].volume = val;
-    }
   };
 
   const getScale = () => {
@@ -141,17 +149,22 @@ const App: React.FC = () => {
         <main className="flex flex-col items-center">
           {isPlaying && (
             <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-1000">
-               <div className="flex items-end gap-1.5 h-8">
-                 {[...Array(8)].map((_, i) => (
-                   <div 
-                    key={i} 
-                    className="w-1 rounded-full bg-gradient-to-t from-white/5 via-white/40 to-white/10" 
-                    style={{ 
-                      height: isPlaying ? `${20 + (frequencyData[i % frequencyData.length] / 255) * 80}%` : '10%',
-                      transition: 'height 0.1s ease-out'
-                    }} 
-                   />
-                 ))}
+               <div className="flex items-end gap-1.5 h-10">
+                 {[...Array(12)].map((_, i) => {
+                   const durations = ['0.6s', '0.8s', '0.5s', '0.9s', '0.7s', '1.1s'];
+                   const delays = ['0s', '0.2s', '0.4s', '0.1s', '0.3s', '0.5s'];
+                   return (
+                     <div 
+                      key={i} 
+                      className={`w-1.5 rounded-full bg-gradient-to-t from-white/5 via-white/50 to-white/10 ${isPlaying ? 'visualizer-bar' : ''}`}
+                      style={{ 
+                        height: isPlaying ? undefined : '15%',
+                        '--duration': durations[i % durations.length],
+                        '--delay': delays[i % delays.length]
+                      } as React.CSSProperties} 
+                     />
+                   );
+                 })}
                </div>
                <span className="text-[9px] tracking-[0.8em] uppercase font-light text-shimmer">
                  Atmosphere Active
@@ -183,6 +196,7 @@ const App: React.FC = () => {
         activeSource={activeSource} setActiveSource={setActiveSource}
         videoId={videoId} setVideoId={setVideoId}
         localAudio={localAudio} setLocalAudio={setLocalAudio}
+        volume={musicVolume}
       />
       <NatureMixer 
         isOpen={isNatureOpen} onClose={() => setIsNatureOpen(false)} 
@@ -194,6 +208,10 @@ const App: React.FC = () => {
         visuals={visuals} onUpdate={(key, value) => setVisuals(prev => ({ ...prev, [key]: value }))}
         wallpaper={wallpaper}
         setWallpaper={setWallpaper}
+        musicVolume={musicVolume}
+        onMusicVolumeChange={setMusicVolume}
+        ambientVolume={masterAmbientVolume}
+        onAmbientVolumeChange={setMasterAmbientVolume}
       />
 
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)] z-10" />

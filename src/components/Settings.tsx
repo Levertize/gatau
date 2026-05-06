@@ -1,5 +1,4 @@
-import React from 'react';
-import { X, Sun, Sparkles, Zap, Layers, Image as ImageIcon } from 'lucide-react';
+import { X, Sun, Sparkles, Zap, Layers, Image as ImageIcon, Volume2, Music } from 'lucide-react';
 import type { ParticleMode } from '../types';
 
 interface SettingsProps {
@@ -15,6 +14,10 @@ interface SettingsProps {
   onUpdate: (key: string, value: any) => void;
   wallpaper: string;
   setWallpaper: (url: string) => void;
+  musicVolume: number;
+  onMusicVolumeChange: (val: number) => void;
+  ambientVolume: number;
+  onAmbientVolumeChange: (val: number) => void;
 }
 
 const DEFAULT_BACKGROUNDS = [
@@ -25,7 +28,10 @@ const DEFAULT_BACKGROUNDS = [
   { id: 'forest', label: 'Forest Path', url: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=2574' },
 ];
 
-const Settings: React.FC<SettingsProps> = ({ isOpen, onClose, visuals, onUpdate, wallpaper, setWallpaper }) => {
+const Settings: React.FC<SettingsProps> = ({ 
+  isOpen, onClose, visuals, onUpdate, wallpaper, setWallpaper,
+  musicVolume, onMusicVolumeChange, ambientVolume, onAmbientVolumeChange
+}) => {
   if (!isOpen) return null;
 
   const modes: { id: ParticleMode; label: string }[] = [
@@ -47,8 +53,37 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose, visuals, onUpdate,
         <h2 className="serif-title text-xl italic opacity-40 mb-10 text-center tracking-widest">Atmosphere</h2>
 
         <div className="space-y-10 h-[450px] overflow-y-auto pr-2 custom-scrollbar">
+          {/* Audio Mixing */}
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between opacity-20">
+                <span className="text-[9px] uppercase tracking-widest font-bold">Soundtrack Level</span>
+                <Music size={12} />
+              </div>
+              <input 
+                type="range" min="0" max="1" step="0.01" 
+                value={musicVolume}
+                onChange={(e) => onMusicVolumeChange(parseFloat(e.target.value))}
+                className="w-full h-1 bg-white/5 rounded-full appearance-none cursor-pointer accent-white"
+              />
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex items-center justify-between opacity-20">
+                <span className="text-[9px] uppercase tracking-widest font-bold">Ambience Level</span>
+                <Volume2 size={12} />
+              </div>
+              <input 
+                type="range" min="0" max="1" step="0.01" 
+                value={ambientVolume}
+                onChange={(e) => onAmbientVolumeChange(parseFloat(e.target.value))}
+                className="w-full h-1 bg-white/5 rounded-full appearance-none cursor-pointer accent-white"
+              />
+            </div>
+          </div>
+
           {/* Backgrounds */}
-          <div className="space-y-4">
+          <div className="space-y-4 border-t border-white/5 pt-6">
             <div className="flex items-center justify-between opacity-20">
               <span className="text-[9px] uppercase tracking-widest font-bold">Backgrounds</span>
               <ImageIcon size={12} />

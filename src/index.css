@@ -93,3 +93,13 @@ body {
 .animate-soft-float {
   animation: soft-float 10s ease-in-out infinite;
 }
+
+@keyframes bar-pulse {
+  0%, 100% { height: 20%; opacity: 0.3; }
+  50% { height: 80%; opacity: 1; }
+}
+
+.visualizer-bar {
+  animation: bar-pulse var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
