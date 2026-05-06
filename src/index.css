@@ -60,7 +60,9 @@
 .glow-container {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background: #000 !important;
+  isolation: isolate;
+  z-index: 20;
 }
 
 .glow-container::before {
@@ -76,6 +78,7 @@
     transparent 30%
   );
   animation: rotate 6s linear infinite;
+  z-index: -1;
 }
 
 :root {
