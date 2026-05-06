@@ -6,7 +6,7 @@
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-### 🚀 [Live Demo — Experience ZENSPACE Now]([https://zenspace-xi.vercel.app/])
+### 🚀 [Live Demo — Experience ZENSPACE Now]([https://zenspace-xi.vercel.app/]
 
 [**English**](#english) | [**Bahasa Indonesia**](#bahasa-indonesia)
 
