@@ -131,6 +131,16 @@ Kami percaya antarmuka harus menghilang saat tidak diperlukan:
 
 ---
 
+### 🗺️ Roadmap Masa Depan
+Kami terus berupaya mengembangkan ZENSPACE. Berikut adalah rencana kami:
+- [ ] **Integrasi Spotify**: Hubungkan akun premium Anda untuk streaming langsung di dalam ZENSPACE.
+- [ ] **Pomodoro Timer**: Timer minimalis untuk membantu sesi produktivitas Anda.
+- [ ] **Simpan Preset**: Simpan kombinasi wallpaper, suara, dan efek partikel favorit Anda.
+- [ ] **Optimasi Mobile**: Meningkatkan pengalaman untuk tablet dan perangkat seluler.
+- [ ] **Editor Partikel Kustom**: Izinkan pengguna mengubah kecepatan, jumlah, dan warna efek secara langsung.
+
+---
+
 ### 🤝 Kontribusi
 Kami sangat terbuka untuk kontribusi!
 1. **Fork** proyek ini.
@@ -145,3 +155,4 @@ Didistribusikan di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanj
 
 ### ☕ Dukungan
 Dibuat dengan ❤️ oleh [iqbal/levertize](https://github.com/Levertize)
+(https://github.com/Levertize)
