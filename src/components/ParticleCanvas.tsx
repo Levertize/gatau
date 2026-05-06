@@ -72,6 +72,9 @@ const ParticleCanvas: React.FC<ParticleCanvasProps> = ({ mode, speed, count, fre
         } else if (mode === 'rain') {
           color = 'rgba(255, 255, 255, 0.15)';
           size = Math.random() * 1 + 0.5;
+        } else if (mode === 'snow') {
+          color = `rgba(255, 255, 255, ${0.4 + Math.random() * 0.4})`;
+          size = Math.random() * 2 + 1;
         }
 
         particles.push({
@@ -80,7 +83,7 @@ const ParticleCanvas: React.FC<ParticleCanvasProps> = ({ mode, speed, count, fre
           density: (Math.random() * 10) + 1,
           color,
           vx: mode === 'rain' ? 0 : (Math.random() - 0.5) * speed,
-          vy: mode === 'rain' ? (Math.random() * 10 + 5) * speed : (Math.random() - 0.5) * speed,
+          vy: mode === 'rain' ? (Math.random() * 10 + 5) * speed : (mode === 'snow' ? (Math.random() * 2 + 1) * speed : (Math.random() - 0.5) * speed),
           angle: Math.random() * Math.PI * 2,
           distance
         });
@@ -117,6 +120,9 @@ const ParticleCanvas: React.FC<ParticleCanvasProps> = ({ mode, speed, count, fre
         } else if (mode === 'rain') {
           p.y += p.vy * (1 + audioScale);
           p.x += Math.sin(Date.now() * 0.001) * 0.5;
+        } else if (mode === 'snow') {
+          p.y += p.vy * (1 + audioScale * 0.5);
+          p.x += Math.sin(Date.now() * 0.001 + i) * (0.5 + audioScale);
         } else if (mode === 'fireflies') {
           p.x += Math.sin(Date.now() * 0.001 + i) * reactiveSpeed;
           p.y += Math.cos(Date.now() * 0.001 + i) * reactiveSpeed;

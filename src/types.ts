@@ -1,1 +1,1 @@
-export type ParticleMode = 'dust' | 'sakura' | 'grain' | 'rain' | 'fireflies' | 'minimal';
+export type ParticleMode = 'dust' | 'sakura' | 'grain' | 'rain' | 'fireflies' | 'snow' | 'minimal';

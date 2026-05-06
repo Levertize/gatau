@@ -50,6 +50,32 @@
   animation: shimmer 5s linear infinite;
 }
 
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.glow-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent 30%
+  );
+  animation: rotate 6s linear infinite;
+  z-index: -1;
+}
+
 :root {
   font-family: var(--font-sans);
   color-scheme: dark;

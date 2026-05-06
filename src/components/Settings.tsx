@@ -1,5 +1,13 @@
+import React from 'react';
 import { X, Sun, Sparkles, Zap, Layers, Image as ImageIcon, Volume2, Music } from 'lucide-react';
 import type { ParticleMode } from '../types';
+
+// 1. IMPORT GAMBAR LOKAL (Pastikan file ada di folder src/assets/)
+import bgStudyDay from '../assets/studyday.jpg';
+import bgStudyNight from '../assets/studynight.jpg';
+import bgRainy from '../assets/rainy.jpg';
+import bgWinter from '../assets/winter.jpg';
+import bgBeach from '../assets/beach.jpg';
 
 interface SettingsProps {
   isOpen: boolean;
@@ -21,11 +29,11 @@ interface SettingsProps {
 }
 
 const DEFAULT_BACKGROUNDS = [
-  { id: 'cozy', label: 'Cozy Room', url: 'https://images.unsplash.com/photo-1518173946687-a4c8a9ba332f?auto=format&fit=crop&q=80&w=2574' },
-  { id: 'rainy', label: 'Rainy Window', url: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&q=80&w=2574' },
-  { id: 'night', label: 'Night City', url: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&q=80&w=2574' },
-  { id: 'neon', label: 'Neon Tokyo', url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=2574' },
-  { id: 'forest', label: 'Forest Path', url: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=2574' },
+  { id: 'lofi-day', label: 'Study Day', url: bgStudyDay },
+  { id: 'lofi-night', label: 'Study Night', url: bgStudyNight },
+  { id: 'lofi-rainy', label: 'Rainy Night', url: bgRainy },
+  { id: 'lofi-winter', label: 'Winter Chill', url: bgWinter },
+  { id: 'lofi-beach', label: 'Beach Lofi', url: bgBeach },
 ];
 
 const Settings: React.FC<SettingsProps> = ({ 
@@ -40,6 +48,7 @@ const Settings: React.FC<SettingsProps> = ({
     { id: 'grain', label: 'Retro Grain' },
     { id: 'rain', label: 'Rainy Day' },
     { id: 'fireflies', label: 'Fireflies' },
+    { id: 'snow', label: 'Snowy Fall' },
     { id: 'minimal', label: 'Zen Dot' },
   ];
 

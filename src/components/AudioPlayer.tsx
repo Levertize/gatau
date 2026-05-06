@@ -18,10 +18,10 @@ interface AudioPlayerProps {
 }
 
 const LOFI_PRESETS = [
-  { id: 'lofigirl', label: 'Lofi Girl - Study/Relax', videoId: 'jfKfPfyJRdk' },
-  { id: 'chillhop', label: 'Chillhop Radio - Jazzy', videoId: '5yx6GygbGhs' },
-  { id: 'synthwave', label: 'Synthwave Radio - Chill', videoId: '4xDzrXgIGCE' },
-  { id: 'peaceful', label: 'Peaceful Piano Radio', videoId: 'nmXMgqjQzls' }
+  { id: 'study', label: '1 A.M Study Session', videoId: 'lTRiuFIWV54' },
+  { id: 'gaming', label: 'Lofi Video Game Beats', videoId: '5jaT_8hy3Vg' },
+  { id: 'sleep', label: 'Beats to Sleep/Chill', videoId: 'DWcJFNfaw9c' },
+  { id: 'classic', label: 'Lofi Girl - Essentials', videoId: 'jfKfPfyJRdk' }
 ];
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ 
