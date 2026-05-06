@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
-import { Play, Pause, FileAudio, X, Radio, Music } from 'lucide-react';
+import { Play, Pause, FileAudio, X, Radio, Music, Link } from 'lucide-react';
 
 interface AudioPlayerProps {
   isOpen: boolean;
@@ -205,12 +205,18 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
               </div>
 
               <div className="space-y-6 border-t border-white/5 pt-10">
+                <div className="flex items-center justify-between opacity-20">
+                  <span className="text-[9px] uppercase tracking-widest font-bold">Custom URL</span>
+                  <Link size={12} />
+                </div>
+
                 <form onSubmit={handleYtSubmit} className="space-y-4">
-                  <div className="relative">
+                  <div className="relative flex items-center bg-white/5 border border-white/10 rounded-2xl px-4 focus-within:border-white/20 transition-colors">
+                    <Link size={14} className="opacity-20 mr-3 shrink-0" />
                     <input 
                       type="text" 
-                      placeholder="Paste YouTube Link" 
-                      className={`w-full bg-transparent border-b py-3 text-xs focus:outline-none transition-colors placeholder:opacity-10 text-center ${error ? 'border-red-500/50' : 'border-white/10 focus:border-white/40'}`}
+                      placeholder="Paste YouTube Link (e.g. youtube.com/watch?v=...)" 
+                      className="w-full bg-transparent py-4 text-[11px] focus:outline-none placeholder:opacity-10"
                       value={ytUrl}
                       onChange={(e) => {
                         setYtUrl(e.target.value);
@@ -220,7 +226,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     {ytUrl && (
                       <button 
                         type="submit"
-                        className="absolute right-0 bottom-3 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
+                        className="ml-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full text-[8px] uppercase tracking-widest font-bold transition-all shrink-0"
                       >
                         Load
                       </button>
@@ -240,7 +246,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     onChange={handleLocalFile} 
                     className="absolute inset-0 opacity-0 cursor-pointer z-10" 
                   />
-                  <div className="w-full py-4 border border-dashed border-white/5 rounded-2xl flex items-center justify-center gap-3 opacity-30 group-hover:opacity-60 transition-opacity">
+                  <div className="w-full py-4 border border-dashed border-white/10 rounded-2xl flex items-center justify-center gap-3 opacity-30 group-hover:opacity-60 transition-opacity bg-white/5">
                     <FileAudio size={16} />
                     <span className="text-[9px] uppercase tracking-widest">Upload Local MP3</span>
                   </div>

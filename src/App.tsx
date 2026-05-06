@@ -1,10 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Image as ImageIcon, Link, Upload, X, Globe, Music, Volume2, Settings as SettingsIcon } from 'lucide-react';
 import AmbientPulse from './components/AmbientPulse';
 import AudioPlayer from './components/AudioPlayer';
 import NatureMixer from './components/NatureMixer';
 import Settings from './components/Settings';
 import ParticleCanvas from './components/ParticleCanvas';
 import type { ParticleMode } from './types';
+
+// Import local backgrounds
+import bgStudyDay from './assets/studyday.jpg';
+import bgStudyNight from './assets/studynight.jpg';
+import bgRainy from './assets/rainy.jpg';
+import bgWinter from './assets/winter.jpg';
+import bgBeach from './assets/beach.jpg';
+
+const DEFAULT_BACKGROUNDS = [
+  { id: 'lofi-day', label: 'Study Day', url: bgStudyDay },
+  { id: 'lofi-night', label: 'Study Night', url: bgStudyNight },
+  { id: 'lofi-rainy', label: 'Rainy Night', url: bgRainy },
+  { id: 'lofi-winter', label: 'Winter Chill', url: bgWinter },
+  { id: 'lofi-beach', label: 'Beach Lofi', url: bgBeach },
+];
 
 // Using stable gstatic URLs for ambient sounds
 const AMBIENCE_SOURCES = [
@@ -15,10 +31,12 @@ const AMBIENCE_SOURCES = [
 ];
 
 const App: React.FC = () => {
-  const [wallpaper, setWallpaper] = useState<string>('https://images.unsplash.com/photo-1518173946687-a4c8a9ba332f?auto=format&fit=crop&q=80&w=2574');
+  const [wallpaper, setWallpaper] = useState<string>(DEFAULT_BACKGROUNDS[0].url);
   const [isAudioOpen, setIsAudioOpen] = useState(false);
   const [isNatureOpen, setIsNatureOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isCanvasOpen, setIsCanvasOpen] = useState(false);
+  const [canvasUrl, setCanvasUrl] = useState('');
   const [showUI, setShowUI] = useState(true);
   const [frequencyData, setFrequencyData] = useState<Uint8Array>(new Uint8Array(32));
   
@@ -180,13 +198,7 @@ const App: React.FC = () => {
           <div className="relative p-[1px] rounded-full overflow-hidden glow-container shadow-3xl">
             <nav className="boutique-glass px-12 py-7 rounded-full flex gap-16 items-center border border-white/5 relative z-10">
               <button onClick={() => setIsAudioOpen(true)} className={`nav-link ${isAudioOpen || isPlaying ? 'active' : ''}`}>Soundtrack</button>
-              <label className="nav-link">
-                Canvas
-                <input type="file" accept="image/*" className="hidden" onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) setWallpaper(URL.createObjectURL(file));
-                }} />
-              </label>
+              <button onClick={() => setIsCanvasOpen(true)} className={`nav-link ${isCanvasOpen ? 'active' : ''}`}>Canvas</button>
               <button onClick={() => setIsNatureOpen(true)} className={`nav-link ${isNatureOpen || Object.values(activeSounds).some(v => v) ? 'active' : ''}`}>Ambience</button>
               <button onClick={() => setIsSettingsOpen(true)} className={`nav-link ${isSettingsOpen ? 'active' : ''}`}>Setup</button>
             </nav>
@@ -216,6 +228,115 @@ const App: React.FC = () => {
         </footer>
       </div>
 
+      {/* Canvas Hub Modal */}
+      {isCanvasOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/40 backdrop-blur-3xl">
+          <div className="boutique-glass w-full max-w-sm p-12 rounded-[3rem] relative border border-white/5 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <button onClick={() => setIsCanvasOpen(false)} className="absolute top-8 right-8 opacity-20 hover:opacity-100 transition-opacity">
+              <X size={20} />
+            </button>
+
+            <div className="flex flex-col items-center gap-2 mb-10">
+              <ImageIcon size={24} className="opacity-20 animate-pulse" />
+              <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase opacity-30">Canvas Selection</h2>
+            </div>
+
+            <div className="space-y-12">
+              {/* Current Wallpaper Preview */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between opacity-20">
+                  <span className="text-[9px] uppercase tracking-widest font-bold">Current Atmosphere</span>
+                  <Globe size={12} />
+                </div>
+                <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                  <img src={wallpaper} alt="Current Wallpaper" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/20" />
+                </div>
+              </div>
+
+              {/* Presets Grid */}
+              <div className="space-y-4 border-t border-white/5 pt-10">
+                <div className="flex items-center justify-between opacity-20">
+                  <span className="text-[9px] uppercase tracking-widest font-bold">Lofi Presets</span>
+                  <ImageIcon size={12} />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {DEFAULT_BACKGROUNDS.map(bg => (
+                    <button 
+                      key={bg.id}
+                      onClick={() => setWallpaper(bg.url)}
+                      className="group relative aspect-video rounded-xl overflow-hidden border border-white/5 transition-all hover:border-white/20 active:scale-95"
+                    >
+                      <img src={bg.url} alt={bg.label} className="w-full h-full object-cover opacity-40 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-[8px] uppercase tracking-widest font-bold">{bg.label}</span>
+                      </div>
+                      {wallpaper === bg.url && (
+                        <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_10px_white]" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* URL Input */}
+              <div className="space-y-6 border-t border-white/5 pt-10">
+                <div className="flex items-center justify-between opacity-20">
+                  <span className="text-[9px] uppercase tracking-widest font-bold">Remote Image</span>
+                  <Link size={12} />
+                </div>
+                <form 
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (canvasUrl) {
+                      setWallpaper(canvasUrl);
+                      setCanvasUrl('');
+                    }
+                  }} 
+                  className="space-y-4"
+                >
+                  <div className="relative flex items-center bg-white/5 border border-white/10 rounded-2xl px-4 focus-within:border-white/20 transition-colors">
+                    <Link size={14} className="opacity-20 mr-3 shrink-0" />
+                    <input 
+                      type="text" 
+                      placeholder="Paste Image URL (Unsplash, etc.)" 
+                      className="w-full bg-transparent py-4 text-[11px] focus:outline-none placeholder:opacity-10"
+                      value={canvasUrl}
+                      onChange={(e) => setCanvasUrl(e.target.value)}
+                    />
+                    {canvasUrl && (
+                      <button 
+                        type="submit"
+                        className="ml-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full text-[8px] uppercase tracking-widest font-bold transition-all shrink-0"
+                      >
+                        Set
+                      </button>
+                    )}
+                  </div>
+                </form>
+
+                {/* Local Upload */}
+                <div className="relative group cursor-pointer">
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) setWallpaper(URL.createObjectURL(file));
+                    }} 
+                    className="absolute inset-0 opacity-0 cursor-pointer z-10" 
+                  />
+                  <div className="w-full py-6 border border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3 opacity-30 group-hover:opacity-60 transition-opacity bg-white/5">
+                    <Upload size={20} />
+                    <span className="text-[9px] uppercase tracking-widest">Browse Local Image</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <AudioPlayer 
         isOpen={isAudioOpen} onClose={() => setIsAudioOpen(false)} 
         onFrequencyData={setFrequencyData}
@@ -233,8 +354,6 @@ const App: React.FC = () => {
       <Settings 
         isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} 
         visuals={visuals} onUpdate={(key, value) => setVisuals(prev => ({ ...prev, [key]: value }))}
-        wallpaper={wallpaper}
-        setWallpaper={setWallpaper}
         musicVolume={musicVolume}
         onMusicVolumeChange={setMusicVolume}
         ambientVolume={masterAmbientVolume}

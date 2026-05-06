@@ -2,13 +2,6 @@ import React from 'react';
 import { X, Sun, Sparkles, Zap, Layers, Image as ImageIcon, Volume2, Music } from 'lucide-react';
 import type { ParticleMode } from '../types';
 
-// 1. IMPORT GAMBAR LOKAL (Pastikan file ada di folder src/assets/)
-import bgStudyDay from '../assets/studyday.jpg';
-import bgStudyNight from '../assets/studynight.jpg';
-import bgRainy from '../assets/rainy.jpg';
-import bgWinter from '../assets/winter.jpg';
-import bgBeach from '../assets/beach.jpg';
-
 interface SettingsProps {
   isOpen: boolean;
   onClose: () => void;
@@ -20,24 +13,14 @@ interface SettingsProps {
     particleCount: number;
   };
   onUpdate: (key: string, value: any) => void;
-  wallpaper: string;
-  setWallpaper: (url: string) => void;
   musicVolume: number;
   onMusicVolumeChange: (val: number) => void;
   ambientVolume: number;
   onAmbientVolumeChange: (val: number) => void;
 }
 
-const DEFAULT_BACKGROUNDS = [
-  { id: 'lofi-day', label: 'Study Day', url: bgStudyDay },
-  { id: 'lofi-night', label: 'Study Night', url: bgStudyNight },
-  { id: 'lofi-rainy', label: 'Rainy Night', url: bgRainy },
-  { id: 'lofi-winter', label: 'Winter Chill', url: bgWinter },
-  { id: 'lofi-beach', label: 'Beach Lofi', url: bgBeach },
-];
-
 const Settings: React.FC<SettingsProps> = ({ 
-  isOpen, onClose, visuals, onUpdate, wallpaper, setWallpaper,
+  isOpen, onClose, visuals, onUpdate,
   musicVolume, onMusicVolumeChange, ambientVolume, onAmbientVolumeChange
 }) => {
   if (!isOpen) return null;
@@ -88,25 +71,6 @@ const Settings: React.FC<SettingsProps> = ({
                 onChange={(e) => onAmbientVolumeChange(parseFloat(e.target.value))}
                 className="w-full h-1 bg-white/5 rounded-full appearance-none cursor-pointer accent-white"
               />
-            </div>
-          </div>
-
-          {/* Backgrounds */}
-          <div className="space-y-4 border-t border-white/5 pt-6">
-            <div className="flex items-center justify-between opacity-20">
-              <span className="text-[9px] uppercase tracking-widest font-bold">Backgrounds</span>
-              <ImageIcon size={12} />
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              {DEFAULT_BACKGROUNDS.map(bg => (
-                <button 
-                  key={bg.id}
-                  onClick={() => setWallpaper(bg.url)}
-                  className={`py-3 rounded-xl text-[9px] uppercase tracking-widest border transition-all ${wallpaper === bg.url ? 'bg-white text-black border-white shadow-xl' : 'bg-white/5 border-white/5 opacity-40 hover:opacity-100'}`}
-                >
-                  {bg.label}
-                </button>
-              ))}
             </div>
           </div>
 
