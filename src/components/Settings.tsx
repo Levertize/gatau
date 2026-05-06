@@ -1,6 +1,6 @@
 import React from 'react';
-import { X, Sun, Sparkles, Zap, Volume2, Music, Contrast, Palette, Sliders } from 'lucide-react';
-import type { ParticleMode } from '../types';
+import { X, Sun, Sparkles, Zap, Volume2, Music, Contrast, Palette, Sliders, Clock, Heart } from 'lucide-react';
+import type { ParticleMode, TimerStyle } from '../types';
 
 interface SettingsProps {
   isOpen: boolean;
@@ -13,6 +13,7 @@ interface SettingsProps {
     particleMode: ParticleMode;
     particleSpeed: number;
     particleCount: number;
+    timerStyle: TimerStyle;
   };
   onUpdate: (key: string, value: any) => void;
   musicVolume: number;
@@ -35,6 +36,14 @@ const Settings: React.FC<SettingsProps> = ({
     { id: 'fireflies', label: 'Firefly' },
     { id: 'snow', label: 'Snow' },
     { id: 'minimal', label: 'Zen' },
+  ];
+
+  const timerStyles: { id: TimerStyle; label: string; icon: any }[] = [
+    { id: 'minimal', label: 'Minimal', icon: Clock },
+    { id: 'circular', label: 'Circular', icon: Clock },
+    { id: 'pill', label: 'Pill', icon: Clock },
+    { id: 'cute', label: 'Cute', icon: Heart },
+    { id: 'none', label: 'None', icon: X },
   ];
 
   const ControlGroup = ({ title, icon: Icon, children }: { title: string, icon: any, children: React.ReactNode }) => (
@@ -148,6 +157,22 @@ const Settings: React.FC<SettingsProps> = ({
               >
                 <div className={`w-3 h-3 rounded-full transition-all ${visuals.showParticles ? 'bg-black translate-x-4' : 'bg-white/40'}`} />
               </button>
+            </div>
+          </ControlGroup>
+
+          {/* Productivity / Timer Card */}
+          <ControlGroup title="Focus Timer" icon={Clock}>
+            <div className="grid grid-cols-2 gap-2">
+              {timerStyles.map(s => (
+                <button 
+                  key={s.id}
+                  onClick={() => onUpdate('timerStyle', s.id)}
+                  className={`flex items-center justify-center gap-2 py-3 rounded-xl text-[8px] uppercase tracking-widest border transition-all ${visuals.timerStyle === s.id ? 'bg-white text-black border-white boutique-glow-active' : 'bg-white/5 border-white/5 opacity-40 hover:opacity-100'}`}
+                >
+                  <s.icon size={10} />
+                  {s.label}
+                </button>
+              ))}
             </div>
           </ControlGroup>
         </div>

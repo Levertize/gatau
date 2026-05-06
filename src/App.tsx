@@ -5,7 +5,8 @@ import AudioPlayer from './components/AudioPlayer';
 import NatureMixer from './components/NatureMixer';
 import Settings from './components/Settings';
 import ParticleCanvas from './components/ParticleCanvas';
-import type { ParticleMode } from './types';
+import Pomodoro from './components/Pomodoro';
+import type { ParticleMode, TimerStyle } from './types';
 
 // Import local backgrounds
 import bgStudyDay from './assets/studyday.jpg';
@@ -64,7 +65,8 @@ const App: React.FC = () => {
     showParticles: true,
     particleMode: 'dust' as ParticleMode,
     particleSpeed: 1,
-    particleCount: 1
+    particleCount: 1,
+    timerStyle: 'minimal' as TimerStyle
   });
 
   // Initialize once
@@ -374,6 +376,8 @@ const App: React.FC = () => {
         ambientVolume={masterAmbientVolume}
         onAmbientVolumeChange={setMasterAmbientVolume}
       />
+
+      <Pomodoro style={visuals.timerStyle} showUI={showUI} />
 
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)] z-10" />
     </div>
